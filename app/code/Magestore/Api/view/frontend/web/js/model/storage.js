@@ -24,6 +24,7 @@ define(['jquery', 'mage/url'], function ($, urlBuilder) {
                 contentType: contentType,
                 showLoader: true,
                 beforeSend: function(xhr){
+                    xhr.setRequestHeader("Authorization", "Bearer " + 'nl1mgexbjxtrdt3pdsssxft2h2inptlk');
                     //Empty to remove magento's default handler
                 }
             });
