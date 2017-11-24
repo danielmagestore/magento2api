@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+  ~ * Copyright © 2016 Magestore. All rights reserved.
+  ~ * See COPYING.txt for license details.
+  ~
+  -->
+
+<page layout='empty' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" >
+
+    <head>
+        <meta name="x_ua_compatible" content="IE=edge,chrome=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Magento API</title>
+        <script src="requirejs/require.js"/>
+    </head>
+
+    <body>
+        <block name="require.js" class="Magento\Framework\View\Element\Template" template="Magento_Theme::page/js/require_js.phtml" />
+
+        <referenceContainer name="after.body.start">
+            <block class="Magento\RequireJs\Block\Html\Head\Config" name="requirejs-config"/>
+            <block class="Magento\Translation\Block\Html\Head\Config" name="translate-config"/>
+            <block class="Magento\Translation\Block\Js" name="translate" template="Magento_Translation::translate.phtml"/>
+            <block class="Magento\Framework\View\Element\Js\Cookie" name="js_cookies" template="Magento_Theme::js/cookie.phtml"/>
+            <block class="Magento\Theme\Block\Html\Notices" name="global_notices" template="html/notices.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="main">
+            <container name="content" label="Main Content Area">
+                <block class="Magento\Framework\View\Element\FormKey" name="formkey"/>
+                <block class="Magestore\Api\Block\Container" name="main_container" template="Magestore_Api::container.phtml">
+                    <arguments>
+                        <argument name="jsLayout" xsi:type="array">
+                            <item name="components" xsi:type="array">
+                                <item name="container" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magestore_Api/js/view/container</item>
+                                    <item name="displayArea" xsi:type="string">container</item>
+                                </item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>
