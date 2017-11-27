@@ -18,6 +18,7 @@ define(
             baseUrl: ko.observable(window.mapiDemoBaseUrl),
             isLoggedIn : ko.observable(false),
             accessToken : ko.observable(''),
+            accessType : ko.observable(''),
             username : ko.observable(''),
             password : ko.observable(''),
             /**
@@ -29,6 +30,9 @@ define(
                 self.isUseDemo = ko.pureComputed(function(){
                     return (self.baseUrl() == self.demoUrl())?true:false;
                 });
+                self.isGuest = ko.pureComputed(function(){
+                    return (self.accessType() == '')?true:false;
+                });
                 self.initSession();
                 return self;
             },
@@ -37,8 +41,8 @@ define(
              */
             start: function(){
                 var self = this;
-                if(!self.isLoggedIn()){
-                    var url = "integration/admin/token";
+                if(!self.isLoggedIn() && !self.isGuest()){
+                    var url = "integration/"+self.accessType()+"/token";
                     var payload = {
                         username: self.username(),
                         password: self.password(),

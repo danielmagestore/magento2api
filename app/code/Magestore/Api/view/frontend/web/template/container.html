@@ -1,6 +1,7 @@
 <div id="login_container" data-bind="visible:!isLoggedIn()">
     <label for="base_url_selector" data-bind="i18n:'Base Url'"></label>
-    <select name="base_url_selector"
+    <select id="base_url_selector"
+            name="base_url_selector"
             data-bind="
                 value: baseUrl,
                 options: baseUrls,
@@ -11,12 +12,25 @@
     <label for="base_url" data-bind="i18n:'Your Site Url', visible:!isUseDemo()"></label>
     <input type="text" id="base_url" name="base_url" data-bind="visible:!isUseDemo()"/>
 
+    <label for="access_type_selector" data-bind="i18n:'Access As'"></label>
+    <select id="access_type_selector"
+            name="base_url_selector"
+            data-bind="
+                value: accessType,
+                options: accessTypes,
+                optionsText: function(item) {return item.text;},
+                optionsValue: function(item) {return item.value;  }
+                ">
+    </select>
+    <!-- ko ifnot: isGuest()-->
     <label for="username" data-bind="i18n:'User Name'"></label>
     <input type="text" id="username" name="username"/>
 
     <label for="password" data-bind="i18n:'Password'"></label>
     <input type="password" id="password" name="password"/>
-    <button data-bind="i18n:'Start'"></button>
+    <!--/ko-->
+
+    <button data-bind="i18n:'Start', click:start"></button>
 </div>
 <!-- ko if: isLoggedIn() -->
     <!-- ko foreach: elems() -->

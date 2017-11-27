@@ -19,15 +19,26 @@ define(
                 template: 'Magestore_Api/container'
             },
             baseUrl: Main.baseUrl,
+            accessType: Main.accessType,
             baseUrls: ko.observableArray([
                 {text: __('Demo'),value: Main.demoUrl()},
                 {text: __('Your Site Url'),value:''}
             ]),
+            accessTypes: ko.observableArray([
+                {text: __('Admin'),value: 'admin'},
+                {text: __('Customer'),value:'customer'},
+                {text: __('Guest'),value:''}
+            ]),
+            isUseDemo : Main.isUseDemo,
             isLoggedIn : Main.isLoggedIn,
+            isGuest : Main.isGuest,
             initialize: function () {
                 var self = this;
                 self._super();
             },
+            start: function(){
+                Main.start();
+            }
         });
     }
 );
