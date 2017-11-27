@@ -1,8 +1,25 @@
-<input name="username" type="text" data-bind="value: username"/>
-<input name="password" type="password" data-bind="value: password"/>
-<button class="button" data-bind="i18n:'Get Token',click:getToken"></button>
-<textarea data-bind="value:token"></textarea>
+<div id="login_container" data-bind="visible:!isLoggedIn()">
+    <label for="base_url_selector" data-bind="i18n:'Base Url'"></label>
+    <select name="base_url_selector"
+            data-bind="
+                value: baseUrl,
+                options: baseUrls,
+                optionsText: function(item) {return item.text;},
+                optionsValue: function(item) {return item.value;  }
+                ">
+    </select>
+    <label for="base_url" data-bind="i18n:'Your Site Url', visible:!isUseDemo()"></label>
+    <input type="text" id="base_url" name="base_url" data-bind="visible:!isUseDemo()"/>
 
-<input name="api_route" type="text" data-bind="value: apiRoute"/>
-<button class="button" data-bind="i18n:'Test Api',click:callApi"></button>
-<textarea data-bind="value:response"></textarea>
+    <label for="username" data-bind="i18n:'User Name'"></label>
+    <input type="text" id="username" name="username"/>
+
+    <label for="password" data-bind="i18n:'Password'"></label>
+    <input type="password" id="password" name="password"/>
+    <button data-bind="i18n:'Start'"></button>
+</div>
+<!-- ko if: isLoggedIn() -->
+    <!-- ko foreach: elems() -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+<!--/ko-->

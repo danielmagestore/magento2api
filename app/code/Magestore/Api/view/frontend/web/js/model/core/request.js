@@ -6,7 +6,7 @@
 define(
     [
         'jquery',
-        'Magestore_Api/js/model/storage'
+        'Magestore_Api/js/model/core/storage'
     ],
     function ($, storage) {
         "use strict";
@@ -15,7 +15,7 @@ define(
                 var self = this;
                 return self;
             },
-            send: function (url, method, params, deferred) {
+            send: function (url, method, payload, deferred, contentType, requestHeaders) {
                 var self = this;
                 if (!deferred) {
                     deferred = $.Deferred();
@@ -23,7 +23,7 @@ define(
                 switch (method) {
                     case 'post':
                         storage.post(
-                            url, JSON.stringify(params)
+                            url, JSON.stringify(payload), true, contentType, requestHeaders
                         ).done(
                             function (response) {
                                 deferred.resolve(response);
@@ -36,7 +36,7 @@ define(
                         break;
                     case 'get':
                         storage.get(
-                            url, JSON.stringify(params)
+                            url, JSON.stringify(payload), contentType, requestHeaders
                         ).done(
                             function (response) {
                                 deferred.resolve(response);
@@ -48,9 +48,9 @@ define(
                         );
                         break;
                     case 'delete':
-                        url = self.addParamsToUrl(url, params);
+                        url = self.addParamsToUrl(url, payload);
                         storage.delete(
-                            url, JSON.stringify(params)
+                            url, JSON.stringify(payload), contentType, requestHeaders
                         ).done(
                             function (response) {
                                 deferred.resolve(response);

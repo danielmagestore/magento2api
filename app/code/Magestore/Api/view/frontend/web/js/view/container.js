@@ -10,47 +10,23 @@ define(
         'ko',
         'uiComponent',
         'mage/translate',
-        'Magestore_Api/js/model/request'
+        'Magestore_Api/js/model/main'
     ],
-    function ($, ko, Component, __, Request) {
+    function ($, ko, Component, __, Main) {
         "use strict";
         return Component.extend({
             defaults: {
                 template: 'Magestore_Api/container'
             },
-            username: ko.observable(),
-            password: ko.observable(),
-            token: ko.observable(),
-            apiRoute: ko.observable(),
-            response: ko.observable(),
+            baseUrl: Main.baseUrl,
+            baseUrls: ko.observableArray([
+                {text: __('Demo'),value: Main.demoUrl()},
+                {text: __('Your Site Url'),value:''}
+            ]),
+            isLoggedIn : Main.isLoggedIn,
             initialize: function () {
-                this._super();
-            },
-            getToken: function(){
                 var self = this;
-                var params = {
-                    username:self.username(),
-                    password:self.password()
-                };
-                var url = 'https://devm2.magentovn.com/rest/V1/integration/admin/token';
-                var apiRequest = Request.send(url, 'post', params)
-                apiRequest.done(function(token){
-                    if(token){
-                        self.token(token);
-                    }
-                });
-            },
-            callApi: function(){
-                var self = this;
-                var params = {
-                };
-                var url = 'https://devm2.magentovn.com/rest/V1/'+self.apiRoute();
-                var apiRequest = Request.send(url, 'get', params)
-                apiRequest.done(function(response){
-                    if(response){
-                        self.response(response);
-                    }
-                });
+                self._super();
             },
         });
     }

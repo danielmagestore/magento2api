@@ -2,7 +2,7 @@
  * Copyright © 2017 Magestore. All rights reserved.
  * See COPYING.txt for license details.
  */
-define(['jquery', 'mage/url'], function ($, urlBuilder) {
+define(['jquery'], function ($) {
     'use strict';
 
     return {
@@ -11,20 +11,25 @@ define(['jquery', 'mage/url'], function ($, urlBuilder) {
          * @param {String} url
          * @param {Boolean} global
          * @param {String} contentType
+         * @param {Array} requestHeaders
          * @returns {Deferred}
          */
-        get: function (url, global, contentType) {
+        get: function (url, global, contentType, requestHeaders) {
             global = global === undefined ? true : global;
             contentType = contentType || 'application/json';
 
             return $.ajax({
-                url: urlBuilder.build(url),
+                url: url,
                 type: 'GET',
                 global: global,
                 contentType: contentType,
                 showLoader: true,
                 beforeSend: function(xhr){
-                    xhr.setRequestHeader("Authorization", "Bearer " + 'nl1mgexbjxtrdt3pdsssxft2h2inptlk');
+                    if($.isArray(requestHeaders)){
+                        $.each(requestHeaders, function(key, value){
+                            xhr.setRequestHeader(key, value);
+                        });
+                    }
                     //Empty to remove magento's default handler
                 }
             });
@@ -35,20 +40,26 @@ define(['jquery', 'mage/url'], function ($, urlBuilder) {
          * @param {String} data
          * @param {Boolean} global
          * @param {String} contentType
+         * @param {Array} requestHeaders
          * @returns {Deferred}
          */
-        post: function (url, data, global, contentType) {
+        post: function (url, data, global, contentType, requestHeaders) {
             global = global === undefined ? true : global;
             contentType = contentType || 'application/json';
 
             return $.ajax({
-                url: urlBuilder.build(url),
+                url: url,
                 type: 'POST',
                 data: data,
                 global: global,
                 contentType: contentType,
                 showLoader: true,
                 beforeSend: function(xhr){
+                    if($.isArray(requestHeaders)){
+                        $.each(requestHeaders, function(key, value){
+                            xhr.setRequestHeader(key, value);
+                        });
+                    }
                     //Empty to remove magento's default handler
                 }
             });
@@ -59,20 +70,26 @@ define(['jquery', 'mage/url'], function ($, urlBuilder) {
          * @param {String} data
          * @param {Boolean} global
          * @param {String} contentType
+         * @param {Array} requestHeaders
          * @returns {Deferred}
          */
-        put: function(url, data, global, contentType) {
+        put: function(url, data, global, contentType, requestHeaders) {
             global = global === undefined ? true : global;
             contentType = contentType || 'application/json';
 
             return $.ajax({
-                url: urlBuilder.build(url),
+                url: url,
                 type: 'PUT',
                 data: data,
                 global: global,
                 contentType: contentType,
                 showLoader: true,
                 beforeSend: function(xhr){
+                    if($.isArray(requestHeaders)){
+                        $.each(requestHeaders, function(key, value){
+                            xhr.setRequestHeader(key, value);
+                        });
+                    }
                     //Empty to remove magento's default handler
                 }
             });
@@ -82,19 +99,25 @@ define(['jquery', 'mage/url'], function ($, urlBuilder) {
          * @param {String} url
          * @param {Boolean} global
          * @param {String} contentType
+         * @param {Array} requestHeaders
          * @returns {Deferred}
          */
-        delete: function(url, global, contentType) {
+        delete: function(url, global, contentType, requestHeaders) {
             global = global === undefined ? true : global;
             contentType = contentType || 'application/json';
 
             return $.ajax({
-                url: urlBuilder.build(url),
+                url: url,
                 type: 'DELETE',
                 global: global,
                 contentType: contentType,
                 showLoader: true,
                 beforeSend: function(xhr){
+                    if($.isArray(requestHeaders)){
+                        $.each(requestHeaders, function(key, value){
+                            xhr.setRequestHeader(key, value);
+                        });
+                    }
                     //Empty to remove magento's default handler
                 }
             });
