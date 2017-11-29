@@ -1,4 +1,4 @@
-<div id="login_container" data-bind="visible:!isLoggedIn()">
+<div id="login_container" data-bind="visible:!isLoggedIn(),afterRender:afterRender">
     <label for="base_url_selector" data-bind="i18n:'Base Url'"></label>
     <select id="base_url_selector"
             name="base_url_selector"

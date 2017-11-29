@@ -10,9 +10,10 @@ define(
         'ko',
         'uiComponent',
         'mage/translate',
-        'Magestore_Api/js/model/main'
+        'Magestore_Api/js/model/main',
+        'Magestore_Api/js/model/core/event-manager'
     ],
-    function ($, ko, Component, __, Main) {
+    function ($, ko, Component, __, Main, Event) {
         "use strict";
         return Component.extend({
             defaults: {
@@ -32,12 +33,16 @@ define(
             isUseDemo : Main.isUseDemo,
             isLoggedIn : Main.isLoggedIn,
             isGuest : Main.isGuest,
+            settingUp : Main.settingUp,
             initialize: function () {
                 var self = this;
                 self._super();
             },
             start: function(){
                 Main.start();
+            },
+            afterRender: function () {
+                Event.dispatch(Main.EVENTS.FINISH_SETTING, '');
             }
         });
     }

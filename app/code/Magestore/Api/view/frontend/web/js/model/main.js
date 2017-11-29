@@ -8,12 +8,16 @@ define(
         'ko',
         'jquery',
         'Magestore_Api/js/model/api',
-        'Magestore_Api/js/model/core/local-storage'
+        'Magestore_Api/js/model/core/local-storage',
+        'Magestore_Api/js/model/core/event-manager'
     ],
-    function (ko, $, Api, LocalStorage) {
+    function (ko, $, Api, LocalStorage, Event) {
         "use strict";
 
         var Main = {
+            EVENTS: {
+                FINISH_SETTING: 'finish_setting'
+            },
             demoUrl: ko.observable(window.mapiDemoBaseUrl),
             baseUrl: ko.observable(window.mapiDemoBaseUrl),
             isLoggedIn : ko.observable(false),
@@ -34,7 +38,17 @@ define(
                     return (self.accessType() == '')?true:false;
                 });
                 self.initSession();
+                self.initEvents();
                 return self;
+            },
+            /**
+             * Init events
+             */
+            initEvents: function(){
+                var self = this;
+                Event.observer(self.EVENTS.FINISH_SETTING, function(){
+                    $('#mapi_setting_up_indicator').hide();
+                });
             },
             /**
              * Start session
@@ -55,6 +69,8 @@ define(
                             self.accessToken(response);
                         }
                     });
+                }else{
+                    self.isLoggedIn(true);
                 }
             },
             /**
