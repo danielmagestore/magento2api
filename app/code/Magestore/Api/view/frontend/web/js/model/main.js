@@ -8,8 +8,8 @@ define(
         'ko',
         'jquery',
         'Magestore_Api/js/model/api',
-        'Magestore_Api/js/model/core/local-storage',
-        'Magestore_Api/js/model/core/event-manager'
+        'local-storage',
+        'events'
     ],
     function (ko, $, Api, LocalStorage, Event) {
         "use strict";

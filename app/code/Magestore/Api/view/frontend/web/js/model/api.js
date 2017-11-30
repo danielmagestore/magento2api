@@ -7,8 +7,8 @@ define(
     [
         'ko',
         'jquery',
-        'Magestore_Api/js/model/core/request',
-        'Magestore_Api/js/model/core/url-builder'
+        'request',
+        'url-builder'
     ],
     function (ko, $, Request, UrlBuilder) {
         "use strict";

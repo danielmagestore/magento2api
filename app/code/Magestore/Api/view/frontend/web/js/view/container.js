@@ -11,7 +11,7 @@ define(
         'uiComponent',
         'mage/translate',
         'Magestore_Api/js/model/main',
-        'Magestore_Api/js/model/core/event-manager'
+        'events'
     ],
     function ($, ko, Component, __, Main, Event) {
         "use strict";
