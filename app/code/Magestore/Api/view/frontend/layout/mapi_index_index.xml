@@ -12,8 +12,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Magento API</title>
         <script src="requirejs/require.js"/>
-        <link src="https://fonts.googleapis.com/icon?family=Material+Icons" src_type="url" />
+        <link src="https://fonts.googleapis.com/icon?family=Material+Icons" src_type="url" rel="stylesheet"/>
         <css src="Magestore_Api::css/materialize.css"/>
+        <css src="Magestore_Api::css/mapi.css"/>
     </head>
 
     <body>

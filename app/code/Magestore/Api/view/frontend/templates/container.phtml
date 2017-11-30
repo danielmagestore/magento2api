@@ -1,11 +1,18 @@
 <script>
     window.mapiDemoBaseUrl = "<?php echo $block->getBaseUrl();?>";
 </script>
-<div id="mapi_setting_up_indicator">
-    Loading
-</div>
-<div id="mapi_main_container" class="mapi_main_container" data-bind="scope:'container'">
-    <!-- ko template: getTemplate() --><!-- /ko -->
+<div id="mapi_main" class="mapi_main" data-bind="scope:'container'">
+    <div id="mapi_containers" data-bind="css:{'loading':showIndicator}">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+    <div id="mapi_indicator" data-bind="visible:showIndicator">
+        <div class="indicator_container">
+            <div class="center-align"><?php echo __('Loading');?></div>
+            <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+        </div>
+    </div>
 </div>
 <?php echo $this->getChildHtml(); ?>
 <script type="text/x-magento-init">
@@ -15,7 +22,6 @@
         }
     }
 </script>
-
 <script type="text/javascript">
     require([
         'materialize'

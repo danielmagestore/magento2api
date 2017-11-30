@@ -14,21 +14,18 @@ define(
             method: "rest",
             version: 'V1',
             serviceUrl: ':method/:version/',
-            setBaseUrl: function (url) {
-                this.baseUrl(url);
-            },
             createUrl: function(url, params) {
                 if(url && url.match("^/")){
                     url = url.substr(1);
                 }
                 var baseUrl = this.baseUrl();
+                if(baseUrl && !baseUrl.match("/$")){
+                    baseUrl = baseUrl+'/';
+                }
                 var completeUrl = this.serviceUrl + url;
                 completeUrl = this.bindParams(completeUrl, params);
                 if (completeUrl.indexOf(baseUrl) !== -1) {
                     return completeUrl;
-                }
-                if(baseUrl && !baseUrl.match("$/")){
-                    baseUrl = baseUrl+'/';
                 }
                 return baseUrl + completeUrl;
             },

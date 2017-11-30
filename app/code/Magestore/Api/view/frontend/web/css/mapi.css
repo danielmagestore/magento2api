@@ -1,0 +1,25 @@
+.hide,.loading-mask{display: none;}
+.clear{clear:both}
+#mapi_containers.loading .waves-effect{
+    position: inherit;
+}
+#mapi_indicator{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+}
+
+#mapi_indicator .indicator_container{
+    margin-top: 40vh;
+}
+
+#login_container .content_wrapper{
+    width: 500px;
+    margin: auto;
+    margin-top: 10vh;
+    border: 1px #ccc solid;
+    padding: 20px;
+}

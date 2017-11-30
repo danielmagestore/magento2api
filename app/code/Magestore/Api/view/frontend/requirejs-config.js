@@ -15,8 +15,11 @@ var config = {
         'url-builder': 'Magestore_Api/js/model/core/url-builder'
     },
     shim: {
+        'velocity': {
+            deps: ['jquery']
+        },
         'materialize': {
-            deps: ['jquery', 'hammerjs', 'velocity']
+            deps: ['jquery', 'velocity']
         }
     }
 };

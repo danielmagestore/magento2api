@@ -11,7 +11,8 @@ define(
         'uiComponent',
         'mage/translate',
         'Magestore_Api/js/model/main',
-        'events'
+        'events',
+        'materialize'
     ],
     function ($, ko, Component, __, Main, Event) {
         "use strict";
@@ -20,29 +21,69 @@ define(
                 template: 'Magestore_Api/container'
             },
             baseUrl: Main.baseUrl,
+            customBaseUrl: Main.customBaseUrl,
             accessType: Main.accessType,
-            baseUrls: ko.observableArray([
-                {text: __('Demo'),value: Main.demoUrl()},
-                {text: __('Your Site Url'),value:''}
-            ]),
-            accessTypes: ko.observableArray([
-                {text: __('Admin'),value: 'admin'},
-                {text: __('Customer'),value:'customer'},
-                {text: __('Guest'),value:''}
-            ]),
+            baseUrls: Main.baseUrls,
+            accessTypes: Main.accessTypes,
             isUseDemo : Main.isUseDemo,
             isLoggedIn : Main.isLoggedIn,
             isGuest : Main.isGuest,
+            username : Main.username,
+            password : Main.password,
             settingUp : Main.settingUp,
+            showIndicator: Main.showIndicator,
             initialize: function () {
                 var self = this;
                 self._super();
+                self.initEvents();
+            },
+            initEvents: function(){
+                var self = this;
+                Event.observer('element_valid', function(event, elementSelector){
+                    if($(elementSelector)){
+                        $(elementSelector).addClass('valid');
+                        $(elementSelector).removeClass('invalid');
+                    }
+                });
+                Event.observer('element_invalid', function(event, elementSelector){
+                    if($(elementSelector)){
+                        $(elementSelector).addClass('invalid');
+                        $(elementSelector).removeClass('valid');
+                    }
+                });
             },
             start: function(){
-                Main.start();
+                var self = this;
+                var validInformation = true;
+                if(!self.isUseDemo()){
+                    if(!self.customBaseUrl()){
+                        Event.dispatch('element_invalid', '#base_url');
+                        validInformation = false;
+                    }else{
+                        Event.dispatch('element_valid', '#base_url');
+                    }
+                }
+                if(!self.isGuest()){
+                    if(!self.username()){
+                        Event.dispatch('element_invalid', '#username');
+                        validInformation = false;
+                    }else{
+                        Event.dispatch('element_valid', '#username');
+                    }
+                    if(!self.password()){
+                        Event.dispatch('element_invalid', '#password');
+                        validInformation = false;
+                    }else{
+                        Event.dispatch('element_valid', '#password');
+                    }
+                }
+                if(validInformation){
+                    Main.start();
+                }
             },
             afterRender: function () {
-                Event.dispatch(Main.EVENTS.FINISH_SETTING, '');
+                Event.dispatch(Main.EVENTS.HIDE_INDICATOR, '');
+                $('select').material_select();
             }
         });
     }

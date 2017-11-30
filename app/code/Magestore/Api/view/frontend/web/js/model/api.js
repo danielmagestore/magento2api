@@ -17,6 +17,12 @@ define(
                 var self = this;
                 return self;
             },
+            getBaseUrl: function(){
+                return UrlBuilder.baseUrl();
+            },
+            setBaseUrl: function(baseUrl){
+                UrlBuilder.baseUrl(baseUrl);
+            },
             call: function (url, method, payload, urlParams, deferred, contentType, requestHeaders) {
                 var self = this;
                 if(!self.isUrlValid(url)){
