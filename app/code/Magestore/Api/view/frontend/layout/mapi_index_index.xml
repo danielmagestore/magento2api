@@ -43,13 +43,13 @@
                                             <item name="component" xsi:type="string">Magestore_Api/js/view/container/main</item>
                                             <item name="displayArea" xsi:type="string">main</item>
                                             <item name="children" xsi:type="array">
-                                                <item name="apis" xsi:type="array">
-                                                    <item name="component" xsi:type="string">Magestore_Api/js/view/container/main/apis</item>
-                                                    <item name="displayArea" xsi:type="string">apis</item>
+                                                <item name="api_manager" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magestore_Api/js/view/container/main/api-manager</item>
+                                                    <item name="displayArea" xsi:type="string">api_manager</item>
                                                 </item>
-                                                <item name="api" xsi:type="array">
-                                                    <item name="component" xsi:type="string">Magestore_Api/js/view/container/main/api</item>
-                                                    <item name="displayArea" xsi:type="string">api</item>
+                                                <item name="api_detail" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magestore_Api/js/view/container/main/api-detail</item>
+                                                    <item name="displayArea" xsi:type="string">api_detail</item>
                                                 </item>
                                             </item>
                                         </item>

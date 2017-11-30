@@ -10,18 +10,22 @@ define(
         'ko',
         'uiComponent',
         'mage/translate',
-        'Magestore_Api/js/model/main'
+        'Magestore_Api/js/model/api',
+        'materialize'
     ],
-    function ($, ko, Component, __, Main) {
+    function ($, ko, Component, __, Api) {
         "use strict";
         return Component.extend({
             defaults: {
-                template: 'Magestore_Api/container/main/apis'
+                template: 'Magestore_Api/container/main/api-detail'
             },
             initialize: function () {
                 var self = this;
                 self._super();
             },
+            afterRender: function () {
+                $('.collapsible').collapsible();
+            }
         });
     }
 );

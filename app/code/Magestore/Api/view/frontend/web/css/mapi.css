@@ -1,4 +1,4 @@
-.hide,.loading-mask{display: none;}
+.hide,.loading-mask{display: none !important;}
 .clear{clear:both}
 #mapi_containers.loading .waves-effect{
     position: inherit;
@@ -22,4 +22,20 @@
     margin-top: 10vh;
     border: 1px #ccc solid;
     padding: 20px;
+}
+
+.mapi_container{
+    padding-top: 2px;
+}
+
+.mapi_container_indicator{
+    position: fixed;
+    width: 100vw;
+    top: 0px;
+    left: 0px;
+    background: #fff;
+}
+
+.mapi_container_indicator .progress{
+    margin: 0.2rem 0 0.2rem 0;
 }

@@ -26,8 +26,8 @@ define(['jquery'], function ($) {
                 showLoader: true,
                 beforeSend: function(xhr){
                     if($.isArray(requestHeaders)){
-                        $.each(requestHeaders, function(key, value){
-                            xhr.setRequestHeader(key, value);
+                        $.each(requestHeaders, function(index, header){
+                            xhr.setRequestHeader(header.key, header.value);
                         });
                     }
                     //Empty to remove magento's default handler
@@ -56,8 +56,8 @@ define(['jquery'], function ($) {
                 showLoader: true,
                 beforeSend: function(xhr){
                     if($.isArray(requestHeaders)){
-                        $.each(requestHeaders, function(key, value){
-                            xhr.setRequestHeader(key, value);
+                        $.each(requestHeaders, function(index, header){
+                            xhr.setRequestHeader(header.key, header.value);
                         });
                     }
                     //Empty to remove magento's default handler
@@ -86,8 +86,8 @@ define(['jquery'], function ($) {
                 showLoader: true,
                 beforeSend: function(xhr){
                     if($.isArray(requestHeaders)){
-                        $.each(requestHeaders, function(key, value){
-                            xhr.setRequestHeader(key, value);
+                        $.each(requestHeaders, function(index, header){
+                            xhr.setRequestHeader(header.key, header.value);
                         });
                     }
                     //Empty to remove magento's default handler
@@ -114,8 +114,8 @@ define(['jquery'], function ($) {
                 showLoader: true,
                 beforeSend: function(xhr){
                     if($.isArray(requestHeaders)){
-                        $.each(requestHeaders, function(key, value){
-                            xhr.setRequestHeader(key, value);
+                        $.each(requestHeaders, function(index, header){
+                            xhr.setRequestHeader(header.key, header.value);
                         });
                     }
                     //Empty to remove magento's default handler

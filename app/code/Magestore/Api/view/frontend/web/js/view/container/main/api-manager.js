@@ -10,13 +10,14 @@ define(
         'ko',
         'uiComponent',
         'mage/translate',
-        'Magestore_Api/js/model/main'
+        'Magestore_Api/js/model/api'
     ],
-    function ($, ko, Component, __, Main) {
+    function ($, ko, Component, __, Api) {
         "use strict";
         return Component.extend({
+            showIndicator: Api.loading,
             defaults: {
-                template: 'Magestore_Api/container/main/api'
+                template: 'Magestore_Api/container/main/api-manager'
             },
             initialize: function () {
                 var self = this;

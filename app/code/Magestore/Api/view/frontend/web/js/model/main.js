@@ -34,7 +34,6 @@ define(
             customBaseUrl: ko.observable(''),
             showIndicator : ko.observable(true),
             isLoggedIn : ko.observable(false),
-            accessToken : ko.observable(''),
             accessType : ko.observable(''),
             username : ko.observable(''),
             password : ko.observable(''),
@@ -85,17 +84,9 @@ define(
                     var apiRequest = Api.call(url, 'post', payload);
                     apiRequest.done(function(response){
                         if(response){
-                            console.log(response);
                             self.isLoggedIn(true);
-                            self.accessToken(response);
+                            Api.accessToken(response);
                             self.saveSession();
-                        }
-                    }).always(function(xhr){
-                        if(xhr){
-                            console.log(xhr);
-                            console.log(xhr.getAllResponseHeaders());
-                            console.log(xhr.responseJSON);
-                            console.log(xhr.statusText);
                         }
                     });
                 }else{
@@ -125,13 +116,13 @@ define(
                         self.customBaseUrl(sessionData.custom_base_url);
                     }
                     if(sessionData.access_token){
-                        self.accessToken(sessionData.access_token);
+                        Api.accessToken(sessionData.access_token);
                     }
                     console.log(sessionData);
                     self.isLoggedIn(true);
                 }else{
                     self.isLoggedIn(false);
-                    self.accessToken('');
+                    Api.accessToken('');
                     self.baseUrl(window.mapiDemoBaseUrl);
                     self.customBaseUrl('');
                 }
@@ -144,7 +135,7 @@ define(
                 var sessionData = {
                     base_url: self.baseUrl(),
                     custom_base_url: self.customBaseUrl(),
-                    access_token: self.accessToken()
+                    access_token: Api.accessToken()
                 };
                 LocalStorage.save('session_data', JSON.stringify(sessionData));
             }
