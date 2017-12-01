@@ -4763,7 +4763,7 @@ require(['jquery', 'hammerjs'], function ($, Hammer) {
                         if (options.edge === 'left') {
                             // Reset phantom div
                             $dragTarget.css({width: '', right: '', left: '0'});
-                            menu.velocity({'translateX': '-100%'}, {
+                            menu.velocity({'translateX': [-1*options.menuWidth, 0]}, {
                                 duration: 200,
                                 queue: false,
                                 easing: 'easeOutCubic',

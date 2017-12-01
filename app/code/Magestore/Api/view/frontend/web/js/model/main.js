@@ -49,6 +49,22 @@ define(
                 self.isGuest = ko.pureComputed(function(){
                     return (self.accessType() == '')?true:false;
                 });
+                self.sessionDetail = ko.pureComputed(function(){
+                    var data = [
+                        {label:'Base Url', value:Api.getBaseUrl()},
+                    ];
+                    if(!self.isGuest()){
+                        var tokenType = ko.utils.arrayFirst(self.accessTypes(), function(item) {
+                            return (item.value == self.accessType());
+                        });
+                        data.push({label:'User', value:self.username()});
+                        data.push({label:'Token', value:Api.accessToken()});
+                        data.push({label:'Token Type', value:tokenType});
+                    }else{
+                        data.push({label:'User', value: __('Guest')});
+                    }
+                    return data;
+                });
                 self.initSession();
                 self.initEvents();
                 return self;

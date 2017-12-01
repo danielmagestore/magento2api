@@ -51,6 +51,10 @@
                                                     <item name="component" xsi:type="string">Magestore_Api/js/view/container/main/api-detail</item>
                                                     <item name="displayArea" xsi:type="string">api_detail</item>
                                                 </item>
+                                                <item name="side_nav" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magestore_Api/js/view/container/main/side-nav</item>
+                                                    <item name="displayArea" xsi:type="string">side_nav</item>
+                                                </item>
                                             </item>
                                         </item>
                                     </item>

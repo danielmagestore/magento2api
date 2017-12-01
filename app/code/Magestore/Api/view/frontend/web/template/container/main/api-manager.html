@@ -5,10 +5,110 @@
         </div>
     </div>
 </div>
+
 <div id="api_manager" class="col-left left col s4">
-    <ul>
-        <li>Product</li>
-        <li>Customer</li>
-        <li>Order</li>
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h5 data-bind="i18n:'HTTP request options'"></h5>
+            <a href="#" data-activates="mapi_side_nav" class="button-collapse side_nav_active_button"><i class="material-icons medium ">menu</i></a>
+        </li>
+        <li class="collection-item">
+            <div class="row">
+                <div class="col s4 input-field">
+                    <select id="method_selector"
+                            name="method_selector"
+                            class="validate valid"
+                            data-bind="
+                            value: method,
+                            options: methods,
+                            optionsText: function(item) {return item.text;},
+                            optionsValue: function(item) {return item.value;  }
+                            ">
+                    </select>
+                    <label for="method_selector" data-bind="i18n:'Method'"></label>
+                </div>
+                <div class="col s8 input-field">
+                    <input type="text"
+                           id="endpoint"
+                           name="endpoint"
+                           class="validate"
+                           keyboard="{
+                                13: function (e) {
+                                    send();
+                                }
+                           }"
+                           data-bind="textInput:endpoint, autoselect:true"/>
+                    <label for="endpoint"
+                           data-bind="i18n:'Endpoint'"
+                           data-error="Endpoint is required"></label>
+                </div>
+            </div>
+        </li>
+        <li class="collection-item">
+            <div class="row">
+                <div class="sub_header" data-bind="i18n:'Header'"></div>
+                <i class="material-icons right" data-bind="click:addHeader">add_box</i>
+            </div>
+            <ul class="collection api_headers" data-bind="foreach: requestHeaders">
+                <li class="collection-item row">
+                    <div class="col s4 input-field">
+                        <input type="text" placeholder="Name" data-bind="textInput:key, autoselect:true"/>
+                    </div>
+                    <div class="col s6 input-field">
+                        <input type="text" placeholder="Value" data-bind="textInput:value, autoselect:true"/>
+                    </div>
+                    <div class="col s2">
+                        <i class="material-icons right" data-bind="click:$parent.removeHeader.bind($parent)">delete</i>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="collection-item">
+            <div class="row">
+                <div class="sub_header" data-bind="i18n:'Url Params'"></div>
+                <i class="material-icons right" data-bind="click:addUrlParam">add_box</i>
+            </div>
+            <ul class="collection api_url_params" data-bind="foreach: urlParams">
+                <li class="collection-item row">
+                    <div class="col s4 input-field">
+                        <input type="text" placeholder="Name" data-bind="textInput:key, autoselect:true"/>
+                    </div>
+                    <div class="col s6 input-field">
+                        <input type="text" placeholder="Value" data-bind="textInput:value, autoselect:true"/>
+                    </div>
+                    <div class="col s2">
+                        <i class="material-icons right" data-bind="click:$parent.removeUrlParam.bind($parent)">delete</i>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="collection-item">
+            <div class="row">
+                <div class="sub_header" data-bind="i18n:'Payload'"></div>
+                <i class="material-icons right" data-bind="click:addPayload">add_box</i>
+            </div>
+            <ul class="collection api_payload" data-bind="foreach: payload">
+                <li class="collection-item row">
+                    <div class="col s4 input-field">
+                        <input type="text" placeholder="Name" data-bind="textInput:key, autoselect:true"/>
+                    </div>
+                    <div class="col s6 input-field">
+                        <input type="text" placeholder="Value" data-bind="textInput:value, autoselect:true"/>
+                    </div>
+                    <div class="col s2">
+                        <i class="material-icons right" data-bind="click:$parent.removePayload.bind($parent)">delete</i>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="collection-item">
+            <div class="row right-align">
+                <button class="btn waves-effect waves-light control-item" data-bind="click:send">
+                    <span data-bind="i18n:'Send'"></span>
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </li>
     </ul>
+    <span class="hide" data-bind="afterRender:afterRender"></span>
 </div>

@@ -7,14 +7,29 @@ define(
     [
         'ko',
         'jquery',
+        'mage/translate',
         'request',
-        'url-builder'
+        'url-builder',
+        'Magestore_Api/js/model/api/detail'
     ],
-    function (ko, $, Request, UrlBuilder) {
+    function (ko, $, __, Request, UrlBuilder, ApiDetail) {
         "use strict";
         var Api = {
-            loading : ko.observable(true),
+            DEFAULT: {
+                METHOD:'post',
+                CONTENT_TYPE:'application/json'
+            },
+            loading : ko.observable(false),
             accessToken : ko.observable(''),
+            methods: ko.observableArray([
+                {text: __('Post'),value: 'post'},
+                {text: __('Get'),value:'get'},
+                {text: __('Delete'),value:'delete'}
+            ]),
+            contentTypes: ko.observableArray([
+                {text: __('JSON'),value: 'application/json'},
+                {text: __('XML'),value:'application/xml'}
+            ]),
             initialize: function () {
                 var self = this;
                 return self;
@@ -28,8 +43,10 @@ define(
             call: function (url, method, payload, urlParams, deferred, contentType, requestHeaders) {
                 var self = this;
                 if(self.loading()){
-                    return $.Deferred();
+                    return (deferred)?deferred:$.Deferred();
                 }
+                ApiDetail.xhr('');
+                ApiDetail.url('');
                 self.loading(true);
                 if(!self.isUrlValid(url)){
                     urlParams = (urlParams)?urlParams:{};
@@ -37,18 +54,17 @@ define(
                 }
                 requestHeaders = self.addAccessTokenToHeader(requestHeaders);
                 var apiRequest = Request.send(url, method, payload, deferred, contentType, requestHeaders);
-                apiRequest.done(function(response){
-                    if(response){
-                        console.log(response);
-                    }
-                }).always(function(xhr){
-                    self.loading(false);
+                apiRequest.done(function(response, textStatus, xhr){
                     if(xhr){
-                        console.log(xhr);
-                        console.log(xhr.getAllResponseHeaders());
-                        console.log(xhr.responseJSON);
-                        console.log(xhr.statusText);
+                        ApiDetail.xhr(xhr);
                     }
+                }).fail(function(xhr, textStatus, errorThrown){
+                    if(xhr){
+                        ApiDetail.xhr(xhr);
+                    }
+                }).always(function(){
+                    ApiDetail.url(url);
+                    self.loading(false);
                 });
                 return apiRequest;
             },

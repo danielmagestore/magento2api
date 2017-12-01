@@ -6,13 +6,9 @@
 
 define(
     [
-        'jquery',
-        'ko',
-        'uiComponent',
-        'mage/translate',
-        'Magestore_Api/js/model/main'
+        'uiComponent'
     ],
-    function ($, ko, Component, __, Main) {
+    function (Component) {
         "use strict";
         return Component.extend({
             defaults: {
@@ -21,7 +17,7 @@ define(
             initialize: function () {
                 var self = this;
                 self._super();
-            },
+            }
         });
     }
 );

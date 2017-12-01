@@ -39,3 +39,32 @@
 .mapi_container_indicator .progress{
     margin: 0.2rem 0 0.2rem 0;
 }
+
+#api_manager .collection .collection-header{padding-left: 10px;padding-right: 10px;}
+#api_manager .collection .collection-header a{    color: inherit;}
+#api_manager .collection .collection-header a.side_nav_active_button{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+#api_manager .collection .collection-item{padding-left: 5px;padding-right: 5px;}
+#api_manager .collection .collection-item .row{margin-bottom: 0px;}
+#api_manager .collection .collection-item .row .control-item{margin: 0 0.75rem;}
+
+#api_detail .collapsible .collapsible-body{padding: 1rem 2rem;}
+#api_detail .collapsible .collapsible-body pre{margin: 0;}
+
+.side-nav .user-view .background img{width:100%;}
+
+.side-nav li .collection{padding: 0px 32px;}
+.side-nav li .collection .collection-item .value{padding-left:15px; color: rgba(0, 0, 0, 0.54)}
+
+.side-nav li a.donate{
+    display: flex;
+}
+.side-nav li a.donate img{
+    margin-left: 10px;
+    width: 150px;
+    height: 30px;
+    margin-top: 10px;
+}

@@ -1,0 +1,35 @@
+<ul id="mapi_side_nav" class="side-nav" data-bind="afterRender:afterRender">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="http://magentovn.com/wp-content/uploads/2017/03/4.jpg">
+            </div>
+            <a href="https://www.facebook.com/meomanly"><img class="circle" src="http://magentovn.com/wp-content/uploads/2017/03/meetmagento-e1489826456615.jpg"></a>
+            <a href="https://www.facebook.com/meomanly"><span class="white-text name">Daniel Truong</span></a>
+            <a href="https://www.facebook.com/meomanly"><span class="white-text email">daniel@magentovn.com</span></a>
+        </div>
+    </li>
+    <li>
+        <a href="#!" class="waves-effect" >
+            <i class="material-icons">delete_sweep</i>
+            <span data-bind="i18n:'Clear Session'"></span>
+        </a>
+    </li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader" data-bind="i18n:'Current Session Detail'"></a></li>
+    <li>
+        <ul class="collection current_session_detail" data-bind="foreach: sessionDetail">
+            <li class="collection-item">
+                <div class="label" data-bind="i18n:label"></div>
+                <div class="value" data-bind="text:value"></div>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://www.paypal.me/laptruong" class="waves-effect donate" >
+            <i class="material-icons">payment</i>
+            <span data-bind="i18n:'Donate'"></span>
+            <img src="https://www.paypalobjects.com/webstatic/paypalme/images/pp_logo_small.png"/>
+        </a>
+    </li>
+</ul>

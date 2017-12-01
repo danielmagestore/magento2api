@@ -25,12 +25,12 @@ define(
                         storage.post(
                             url, JSON.stringify(payload), true, contentType, requestHeaders
                         ).done(
-                            function (response) {
-                                deferred.resolve(response);
+                            function (response, textStatus, xhr) {
+                                deferred.resolve(response, textStatus, xhr);
                             }
                         ).fail(
-                            function (response) {
-                                deferred.reject(response);
+                            function (xhr, textStatus, errorThrown) {
+                                deferred.reject(xhr, textStatus, errorThrown);
                             }
                         );
                         break;
@@ -38,12 +38,12 @@ define(
                         storage.get(
                             url, JSON.stringify(payload), contentType, requestHeaders
                         ).done(
-                            function (response) {
-                                deferred.resolve(response);
+                            function (response, textStatus, xhr) {
+                                deferred.resolve(response, textStatus, xhr);
                             }
                         ).fail(
-                            function (response) {
-                                deferred.reject(response);
+                            function (xhr, textStatus, errorThrown) {
+                                deferred.reject(xhr, textStatus, errorThrown);
                             }
                         );
                         break;
@@ -52,12 +52,12 @@ define(
                         storage.delete(
                             url, JSON.stringify(payload), contentType, requestHeaders
                         ).done(
-                            function (response) {
-                                deferred.resolve(response);
+                            function (response, textStatus, xhr) {
+                                deferred.resolve(response, textStatus, xhr);
                             }
                         ).fail(
-                            function (response) {
-                                deferred.reject(response);
+                            function (xhr, textStatus, errorThrown) {
+                                deferred.reject(xhr, textStatus, errorThrown);
                             }
                         );
                         break;
