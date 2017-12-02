@@ -31,6 +31,36 @@ define(
             initialize: function () {
                 var self = this;
                 self._super();
+                self.urlParamsJson = ko.pureComputed(function () {
+                    var urlParamsJson = '';
+                    if(self.urlParams().length > 0){
+                        urlParamsJson = {};
+                        ko.utils.arrayForEach(self.urlParams(), function(item) {
+                            urlParamsJson[item.key()] = item.value();
+                        });
+                    }
+                    return urlParamsJson;
+                });
+                self.payloadJson = ko.pureComputed(function () {
+                    var payloadJson = '';
+                    if(self.payload().length > 0){
+                        payloadJson = {};
+                        ko.utils.arrayForEach(self.payload(), function(item) {
+                            payloadJson[item.key()] = item.value();
+                        });
+                    }
+                    return payloadJson;
+                });
+                self.requestHeadersData = ko.pureComputed(function () {
+                    var requestHeadersData = [];
+                    if(self.requestHeaders().length > 0){
+                        requestHeadersData = [];
+                        ko.utils.arrayForEach(self.requestHeaders(), function(item) {
+                            requestHeadersData.push({key:item.key(), value:item.value()});
+                        });
+                    }
+                    return requestHeadersData;
+                });
             },
             send: function(){
                 var self = this;
@@ -44,10 +74,8 @@ define(
                 if(validInformation){
                     var url = self.endpoint();
                     var method = self.method();
-                    var urlParams = self.urlParams();
-                    var urlParams = '';
-                    var payload = self.payload();
-                    var payload = '';
+                    var urlParams = self.urlParamsJson();
+                    var payload = self.payloadJson();
                     var contentType = self.contentType();
                     var requestHeaders = self.requestHeaders();
                     Api.call(url, method, payload, urlParams, '', contentType, requestHeaders);
@@ -55,10 +83,18 @@ define(
             },
             afterRender: function () {
                 $('select').material_select();
+                $(".button-collapse").sideNav({
+                    menuWidth: 400,
+                    edge: 'left',
+                    closeOnClick: true,
+                    draggable: true,
+                    onOpen: function(el) {},
+                    onClose: function(el) {},
+                });
             },
             addHeader: function(){
                 var self = this;
-                self.requestHeaders.push({key:'',value:''});
+                self.requestHeaders.push({key:ko.observable(),value:ko.observable()});
             },
             removeHeader: function(header){
                 var self = this;
@@ -66,7 +102,7 @@ define(
             },
             addUrlParam: function(){
                 var self = this;
-                self.urlParams.push({key:'',value:''});
+                self.urlParams.push({key:ko.observable(),value:ko.observable()});
             },
             removeUrlParam: function(urlParam){
                 var self = this;
@@ -74,7 +110,7 @@ define(
             },
             addPayload: function(){
                 var self = this;
-                self.payload.push({key:'',value:''});
+                self.payload.push({key:ko.observable(),value:ko.observable()});
             },
             removePayload: function(payload){
                 var self = this;

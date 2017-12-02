@@ -1,4 +1,4 @@
-<ul id="mapi_side_nav" class="side-nav" data-bind="afterRender:afterRender">
+<ul id="mapi_side_nav" class="side-nav">
     <li>
         <div class="user-view">
             <div class="background">
@@ -10,7 +10,7 @@
         </div>
     </li>
     <li>
-        <a href="#!" class="waves-effect" >
+        <a href="#!" class="waves-effect" data-bind="click:clearSession">
             <i class="material-icons">delete_sweep</i>
             <span data-bind="i18n:'Clear Session'"></span>
         </a>
@@ -33,3 +33,4 @@
         </a>
     </li>
 </ul>
+<span class="hide" data-bind="afterRender:afterRender"></span>

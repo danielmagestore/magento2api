@@ -47,9 +47,16 @@
     right: 5px;
     top: 5px;
 }
+#api_manager .material-icons{cursor: pointer}
+#api_manager .material-icons:hover{opacity: 0.7}
 #api_manager .collection .collection-item{padding-left: 5px;padding-right: 5px;}
 #api_manager .collection .collection-item .row{margin-bottom: 0px;}
+#api_manager .collection .collection-item .sub_header_wrapper .material-icons{padding-right: 5px;}
 #api_manager .collection .collection-item .row .control-item{margin: 0 0.75rem;}
+#api_manager .collection .collection-item .row .sub_header{padding-left: 10px;}
+#api_manager .collection .collection-item .collection .collection-item.row .input-field,
+#api_manager .collection .collection-item .collection .collection-item.row .input-field input{margin: 0px;}
+#api_manager .collection .collection-item .collection .collection-item.row .action-field{padding: 0px;}
 
 #api_detail .collapsible .collapsible-body{padding: 1rem 2rem;}
 #api_detail .collapsible .collapsible-body pre{margin: 0;}

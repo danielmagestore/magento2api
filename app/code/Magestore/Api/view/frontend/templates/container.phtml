@@ -1,6 +1,13 @@
 <script>
     window.mapiDemoBaseUrl = "<?php echo $block->getBaseUrl();?>";
 </script>
+<script type="text/javascript">
+    require([
+        'materialize'
+    ], function () {
+
+    });
+</script>
 <div id="mapi_main" class="mapi_main" data-bind="scope:'container'">
     <div id="mapi_containers" data-bind="css:{'loading':showIndicator}">
         <!-- ko template: getTemplate() --><!-- /ko -->
@@ -21,11 +28,4 @@
             "Magento_Ui/js/core/app": <?php /* @escapeNotVerified */ echo $block->getJsLayout(); ?>
         }
     }
-</script>
-<script type="text/javascript">
-    require([
-        'materialize'
-    ], function () {
-
-    });
 </script>

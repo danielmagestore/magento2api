@@ -45,8 +45,8 @@
             </div>
         </li>
         <li class="collection-item">
-            <div class="row">
-                <div class="sub_header" data-bind="i18n:'Header'"></div>
+            <div class="row sub_header_wrapper">
+                <div class="sub_header left" data-bind="i18n:'Header'"></div>
                 <i class="material-icons right" data-bind="click:addHeader">add_box</i>
             </div>
             <ul class="collection api_headers" data-bind="foreach: requestHeaders">
@@ -54,18 +54,18 @@
                     <div class="col s4 input-field">
                         <input type="text" placeholder="Name" data-bind="textInput:key, autoselect:true"/>
                     </div>
-                    <div class="col s6 input-field">
+                    <div class="col s7 input-field">
                         <input type="text" placeholder="Value" data-bind="textInput:value, autoselect:true"/>
                     </div>
-                    <div class="col s2">
+                    <div class="col s1 action-field">
                         <i class="material-icons right" data-bind="click:$parent.removeHeader.bind($parent)">delete</i>
                     </div>
                 </li>
             </ul>
         </li>
         <li class="collection-item">
-            <div class="row">
-                <div class="sub_header" data-bind="i18n:'Url Params'"></div>
+            <div class="row sub_header_wrapper">
+                <div class="sub_header left" data-bind="i18n:'Url Params'"></div>
                 <i class="material-icons right" data-bind="click:addUrlParam">add_box</i>
             </div>
             <ul class="collection api_url_params" data-bind="foreach: urlParams">
@@ -73,18 +73,18 @@
                     <div class="col s4 input-field">
                         <input type="text" placeholder="Name" data-bind="textInput:key, autoselect:true"/>
                     </div>
-                    <div class="col s6 input-field">
+                    <div class="col s7 input-field">
                         <input type="text" placeholder="Value" data-bind="textInput:value, autoselect:true"/>
                     </div>
-                    <div class="col s2">
+                    <div class="col s1 action-field">
                         <i class="material-icons right" data-bind="click:$parent.removeUrlParam.bind($parent)">delete</i>
                     </div>
                 </li>
             </ul>
         </li>
         <li class="collection-item">
-            <div class="row">
-                <div class="sub_header" data-bind="i18n:'Payload'"></div>
+            <div class="row sub_header_wrapper">
+                <div class="sub_header left" data-bind="i18n:'Payload'"></div>
                 <i class="material-icons right" data-bind="click:addPayload">add_box</i>
             </div>
             <ul class="collection api_payload" data-bind="foreach: payload">
@@ -92,10 +92,10 @@
                     <div class="col s4 input-field">
                         <input type="text" placeholder="Name" data-bind="textInput:key, autoselect:true"/>
                     </div>
-                    <div class="col s6 input-field">
+                    <div class="col s7 input-field">
                         <input type="text" placeholder="Value" data-bind="textInput:value, autoselect:true"/>
                     </div>
-                    <div class="col s2">
+                    <div class="col s1 action-field">
                         <i class="material-icons right" data-bind="click:$parent.removePayload.bind($parent)">delete</i>
                     </div>
                 </li>

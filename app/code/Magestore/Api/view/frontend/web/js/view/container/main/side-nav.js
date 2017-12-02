@@ -33,6 +33,10 @@ define(
                     onOpen: function(el) {},
                     onClose: function(el) {},
                 });
+            },
+            clearSession: function () {
+                $('.button-collapse').sideNav('hide');
+                Main.finish();
             }
         });
     }
