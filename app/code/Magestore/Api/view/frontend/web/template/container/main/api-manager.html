@@ -1,11 +1,3 @@
-<div id="api_manager_indicator" class="mapi_container_indicator" data-bind="visible:showIndicator">
-    <div class="indicator_container">
-        <div class="progress">
-            <div class="indeterminate"></div>
-        </div>
-    </div>
-</div>
-
 <div id="api_manager" class="col-left left col s4">
     <ul class="collection with-header">
         <li class="collection-header">
@@ -31,7 +23,18 @@
                     <input type="text"
                            id="endpoint"
                            name="endpoint"
-                           class="validate"
+                           class="validate tooltipped"
+                           data-position="right"
+                           data-delay="50"
+                           data-html="true"
+                           data-tooltip="
+                           <ul>
+                               <li class='left-align'>Example format:</li>
+                               <li class='left-align'>products</li>
+                               <li class='left-align'>products/:sku</li>
+                               <li class='left-align'>http://m2.magentovn.com/rest/V1/products</li>
+                           </ul>
+                           "
                            keyboard="{
                                 13: function (e) {
                                     send();

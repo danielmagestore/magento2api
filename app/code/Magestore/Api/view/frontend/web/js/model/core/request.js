@@ -15,7 +15,7 @@ define(
                 var self = this;
                 return self;
             },
-            send: function (url, method, payload, deferred, contentType, requestHeaders) {
+            send: function (url, method, payload, deferred, contentType, requestHeaders, crossDomain) {
                 var self = this;
                 if (!deferred) {
                     deferred = $.Deferred();
@@ -23,7 +23,7 @@ define(
                 switch (method) {
                     case 'post':
                         storage.post(
-                            url, JSON.stringify(payload), true, contentType, requestHeaders
+                            url, JSON.stringify(payload), true, contentType, requestHeaders, crossDomain
                         ).done(
                             function (response, textStatus, xhr) {
                                 deferred.resolve(response, textStatus, xhr);
@@ -36,7 +36,7 @@ define(
                         break;
                     case 'get':
                         storage.get(
-                            url, JSON.stringify(payload), contentType, requestHeaders
+                            url, JSON.stringify(payload), contentType, requestHeaders, crossDomain
                         ).done(
                             function (response, textStatus, xhr) {
                                 deferred.resolve(response, textStatus, xhr);
@@ -50,7 +50,7 @@ define(
                     case 'delete':
                         url = self.addParamsToUrl(url, payload);
                         storage.delete(
-                            url, JSON.stringify(payload), contentType, requestHeaders
+                            url, JSON.stringify(payload), contentType, requestHeaders, crossDomain
                         ).done(
                             function (response, textStatus, xhr) {
                                 deferred.resolve(response, textStatus, xhr);

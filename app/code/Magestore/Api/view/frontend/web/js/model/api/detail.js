@@ -38,6 +38,12 @@ define(
                 self.responseHeaders = ko.pureComputed(function(){
                     return (self.xhr())?self.xhr().getAllResponseHeaders():'';
                 });
+                self.xhr.subscribe(function(xhr){
+                    if(xhr && (xhr.status == 0)){
+                        var message = "Javascript returned an HTTP 0 error. One common reason this might happen is that you requested a cross-domain resource from a server that did not include the appropriate CORS headers in the response. You can view detail in the Console tab of your browser developer tools.";
+                        Materialize.toast(message, 10000);
+                    }
+                });
                 return self;
             },
         };

@@ -88,8 +88,10 @@ define(
                 var self = this;
                 if(self.isUseDemo()){
                     Api.setBaseUrl(self.demoUrl());
+                    Api.crossDomain(false);
                 }else{
                     Api.setBaseUrl(self.customBaseUrl());
+                    Api.crossDomain(true);
                 }
                 if(!self.isLoggedIn() && !self.isGuest()){
                     var url = "integration/"+self.accessType()+"/token";
@@ -142,6 +144,7 @@ define(
                     self.baseUrl(window.mapiDemoBaseUrl);
                     self.customBaseUrl('');
                 }
+                Api.crossDomain((self.isUseDemo())?false:true);
             },
             /**
              * Save logged in session

@@ -12,9 +12,11 @@ define(['jquery'], function ($) {
          * @param {Boolean} global
          * @param {String} contentType
          * @param {Array} requestHeaders
+         * @param {Boolean} crossDomain
          * @returns {Deferred}
          */
-        get: function (url, global, contentType, requestHeaders) {
+        get: function (url, global, contentType, requestHeaders, crossDomain) {
+            crossDomain = crossDomain === undefined ? false : crossDomain;
             global = global === undefined ? true : global;
             contentType = contentType || 'application/json';
 
@@ -24,6 +26,7 @@ define(['jquery'], function ($) {
                 global: global,
                 contentType: contentType,
                 showLoader: true,
+                crossDomain : crossDomain,
                 beforeSend: function(xhr){
                     if($.isArray(requestHeaders)){
                         $.each(requestHeaders, function(index, header){
@@ -41,9 +44,11 @@ define(['jquery'], function ($) {
          * @param {Boolean} global
          * @param {String} contentType
          * @param {Array} requestHeaders
+         * @param {Boolean} crossDomain
          * @returns {Deferred}
          */
-        post: function (url, data, global, contentType, requestHeaders) {
+        post: function (url, data, global, contentType, requestHeaders, crossDomain) {
+            crossDomain = crossDomain === undefined ? false : crossDomain;
             global = global === undefined ? true : global;
             contentType = contentType || 'application/json';
 
@@ -54,6 +59,7 @@ define(['jquery'], function ($) {
                 global: global,
                 contentType: contentType,
                 showLoader: true,
+                crossDomain: crossDomain,
                 beforeSend: function(xhr){
                     if($.isArray(requestHeaders)){
                         $.each(requestHeaders, function(index, header){
@@ -71,9 +77,11 @@ define(['jquery'], function ($) {
          * @param {Boolean} global
          * @param {String} contentType
          * @param {Array} requestHeaders
+         * @param {Boolean} crossDomain
          * @returns {Deferred}
          */
-        put: function(url, data, global, contentType, requestHeaders) {
+        put: function(url, data, global, contentType, requestHeaders, crossDomain) {
+            crossDomain = crossDomain === undefined ? false : crossDomain;
             global = global === undefined ? true : global;
             contentType = contentType || 'application/json';
 
@@ -84,6 +92,7 @@ define(['jquery'], function ($) {
                 global: global,
                 contentType: contentType,
                 showLoader: true,
+                crossDomain: crossDomain,
                 beforeSend: function(xhr){
                     if($.isArray(requestHeaders)){
                         $.each(requestHeaders, function(index, header){
@@ -100,9 +109,11 @@ define(['jquery'], function ($) {
          * @param {Boolean} global
          * @param {String} contentType
          * @param {Array} requestHeaders
+         * @param {Boolean} crossDomain
          * @returns {Deferred}
          */
-        delete: function(url, global, contentType, requestHeaders) {
+        delete: function(url, global, contentType, requestHeaders, crossDomain) {
+            crossDomain = crossDomain === undefined ? false : crossDomain;
             global = global === undefined ? true : global;
             contentType = contentType || 'application/json';
 
@@ -112,6 +123,7 @@ define(['jquery'], function ($) {
                 global: global,
                 contentType: contentType,
                 showLoader: true,
+                crossDomain: crossDomain,
                 beforeSend: function(xhr){
                     if($.isArray(requestHeaders)){
                         $.each(requestHeaders, function(index, header){

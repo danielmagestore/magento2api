@@ -20,6 +20,7 @@ define(
                 CONTENT_TYPE:'application/json'
             },
             loading : ko.observable(false),
+            crossDomain : ko.observable(false),
             accessToken : ko.observable(''),
             methods: ko.observableArray([
                 {text: __('Post'),value: 'post'},
@@ -40,11 +41,12 @@ define(
             setBaseUrl: function(baseUrl){
                 UrlBuilder.baseUrl(baseUrl);
             },
-            call: function (url, method, payload, urlParams, deferred, contentType, requestHeaders) {
+            call: function (url, method, payload, urlParams, deferred, contentType, requestHeaders, crossDomain) {
                 var self = this;
                 if(self.loading()){
                     return (deferred)?deferred:$.Deferred();
                 }
+                crossDomain = (typeof crossDomain != 'undefined')?crossDomain:self.crossDomain();
                 ApiDetail.xhr('');
                 ApiDetail.url('');
                 self.loading(true);
@@ -53,7 +55,7 @@ define(
                     url = UrlBuilder.createUrl(url, urlParams);
                 }
                 requestHeaders = self.addAccessTokenToHeader(requestHeaders);
-                var apiRequest = Request.send(url, method, payload, deferred, contentType, requestHeaders);
+                var apiRequest = Request.send(url, method, payload, deferred, contentType, requestHeaders, crossDomain);
                 apiRequest.done(function(response, textStatus, xhr){
                     if(xhr){
                         ApiDetail.xhr(xhr);

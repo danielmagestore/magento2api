@@ -16,7 +16,6 @@ define(
     function ($, ko, Component, __, Event, Api) {
         "use strict";
         return Component.extend({
-            showIndicator: Api.loading,
             methods: Api.methods,
             contentTypes: Api.contentTypes,
             requestHeaders: ko.observableArray(),
@@ -77,7 +76,7 @@ define(
                     var urlParams = self.urlParamsJson();
                     var payload = self.payloadJson();
                     var contentType = self.contentType();
-                    var requestHeaders = self.requestHeaders();
+                    var requestHeaders = self.requestHeadersData();
                     Api.call(url, method, payload, urlParams, '', contentType, requestHeaders);
                 }
             },
@@ -91,6 +90,7 @@ define(
                     onOpen: function(el) {},
                     onClose: function(el) {},
                 });
+                $('.tooltipped').tooltip({delay: 50});
             },
             addHeader: function(){
                 var self = this;

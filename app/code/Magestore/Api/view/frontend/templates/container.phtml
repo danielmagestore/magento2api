@@ -9,10 +9,10 @@
     });
 </script>
 <div id="mapi_main" class="mapi_main" data-bind="scope:'container'">
-    <div id="mapi_containers" data-bind="css:{'loading':showIndicator}">
+    <div id="mapi_containers" data-bind="css:{'loading':showRenderingIndicator}">
         <!-- ko template: getTemplate() --><!-- /ko -->
     </div>
-    <div id="mapi_indicator" data-bind="visible:showIndicator">
+    <div id="mapi_indicator" data-bind="visible:showRenderingIndicator">
         <div class="indicator_container">
             <div class="center-align"><?php echo __('Loading');?></div>
             <div class="progress">

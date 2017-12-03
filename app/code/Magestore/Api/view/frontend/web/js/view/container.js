@@ -11,10 +11,11 @@ define(
         'uiComponent',
         'mage/translate',
         'Magestore_Api/js/model/main',
+        'Magestore_Api/js/model/api',
         'events',
         'materialize'
     ],
-    function ($, ko, Component, __, Main, Event) {
+    function ($, ko, Component, __, Main, Api, Event) {
         "use strict";
         return Component.extend({
             defaults: {
@@ -31,7 +32,8 @@ define(
             username : Main.username,
             password : Main.password,
             settingUp : Main.settingUp,
-            showIndicator: Main.showIndicator,
+            showRenderingIndicator: Main.showIndicator,
+            showContainerIndicator: Api.loading,
             initialize: function () {
                 var self = this;
                 self._super();
