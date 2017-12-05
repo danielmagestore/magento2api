@@ -61,7 +61,7 @@
                 <label for="access_type_selector" data-bind="i18n:'Access As'"></label>
             </div>
         </div>
-        <div class="row" data-bind="visible:!isGuest()">
+        <div class="row" data-bind="visible:(!isGuest() && !isCustomAccess())">
             <div class="input-field col s12">
                 <input type="text"
                        id="username"
@@ -73,7 +73,7 @@
                        data-error="User Name is required"></label>
             </div>
         </div>
-        <div class="row" data-bind="visible:!isGuest()">
+        <div class="row" data-bind="visible:(!isGuest() && !isCustomAccess())">
             <div class="input-field col s12">
                 <input type="password"
                        id="password"
@@ -83,6 +83,18 @@
                 <label for="password"
                        data-bind="i18n:'Password'"
                        data-error="Password is required"></label>
+            </div>
+        </div>
+        <div class="row" data-bind="visible:isCustomAccess()">
+            <div class="input-field col s12">
+                <input type="text"
+                       id="custom_access_token"
+                       name="custom_access_token"
+                       class="validate"
+                       data-bind="textInput:customAccessToken"/>
+                <label for="custom_access_token"
+                       data-bind="i18n:'Your access token'"
+                       data-error="Access token is required"></label>
             </div>
         </div>
         <button class="btn waves-effect waves-light" data-bind="click:start">

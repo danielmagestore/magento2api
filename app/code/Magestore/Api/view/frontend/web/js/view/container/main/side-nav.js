@@ -33,10 +33,18 @@ define(
                     onOpen: function(el) {},
                     onClose: function(el) {},
                 });
+                $('.tooltipped').tooltip({delay: 50});
             },
             clearSession: function () {
                 $('.button-collapse').sideNav('hide');
                 Main.finish();
+            },
+            copySessionData: function (sessionData) {
+                if (sessionData) {
+                    Event.dispatch('copy_data', sessionData.value);
+                    var message = "Copied to clipboard";
+                    Materialize.toast(message, 1000);
+                }
             }
         });
     }

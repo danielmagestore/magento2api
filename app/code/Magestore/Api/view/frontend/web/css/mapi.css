@@ -65,6 +65,13 @@
 
 .side-nav li .collection{padding: 0px 32px;}
 .side-nav li .collection .collection-item .value{padding-left:15px; color: rgba(0, 0, 0, 0.54)}
+.side-nav li .collection .collection-item{position: relative;}
+.side-nav li .collection .collection-item .action-icon{
+    position: absolute;
+    top: 10px;
+    right: -5px;
+    cursor: pointer;
+}
 
 .side-nav li a.donate{
     display: flex;

@@ -10,7 +10,7 @@
     <head>
         <meta name="x_ua_compatible" content="IE=edge,chrome=1"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Magento API</title>
+        <title>Magento REST API Testing</title>
         <script src="requirejs/require.js"/>
         <link src="https://fonts.googleapis.com/icon?family=Material+Icons" src_type="url" rel="stylesheet"/>
         <css src="Magestore_Api::css/materialize.css"/>

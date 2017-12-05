@@ -21,7 +21,14 @@
         <ul class="collection current_session_detail" data-bind="foreach: sessionDetail">
             <li class="collection-item">
                 <div class="label" data-bind="i18n:label"></div>
-                <div class="value" data-bind="text:value"></div>
+                <div class="value" data-bind="html:value"></div>
+                <div class="action-icon tooltipped"
+                     data-position="right"
+                     data-delay="50"
+                     data-tooltip="Copy"
+                     data-bind="visible:((typeof copyAble != 'undefined') && (copyAble == true)), click:$parent.copySessionData">
+                    <i class="material-icons">content_copy</i>
+                </div>
             </li>
         </ul>
     </li>

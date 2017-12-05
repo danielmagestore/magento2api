@@ -24,11 +24,13 @@ define(
             baseUrl: Main.baseUrl,
             customBaseUrl: Main.customBaseUrl,
             accessType: Main.accessType,
+            customAccessToken: Main.customAccessToken,
             baseUrls: Main.baseUrls,
             accessTypes: Main.accessTypes,
             isUseDemo : Main.isUseDemo,
             isLoggedIn : Main.isLoggedIn,
             isGuest : Main.isGuest,
+            isCustomAccess : Main.isCustomAccess,
             username : Main.username,
             password : Main.password,
             settingUp : Main.settingUp,
@@ -53,6 +55,13 @@ define(
                         $(elementSelector).removeClass('valid');
                     }
                 });
+                Event.observer('copy_data', function(event, data){
+                    var $temp = $("<input>");
+                    $("body").append($temp);
+                    $temp.val(data).select();
+                    document.execCommand("copy");
+                    $temp.remove();
+                });
             },
             start: function(){
                 var self = this;
@@ -66,17 +75,26 @@ define(
                     }
                 }
                 if(!self.isGuest()){
-                    if(!self.username()){
-                        Event.dispatch('element_invalid', '#username');
-                        validInformation = false;
+                    if(self.isCustomAccess()){
+                        if(!self.customAccessToken()){
+                            Event.dispatch('element_invalid', '#custom_access_token');
+                            validInformation = false;
+                        }else{
+                            Event.dispatch('element_valid', '#custom_access_token');
+                        }
                     }else{
-                        Event.dispatch('element_valid', '#username');
-                    }
-                    if(!self.password()){
-                        Event.dispatch('element_invalid', '#password');
-                        validInformation = false;
-                    }else{
-                        Event.dispatch('element_valid', '#password');
+                        if(!self.username()){
+                            Event.dispatch('element_invalid', '#username');
+                            validInformation = false;
+                        }else{
+                            Event.dispatch('element_valid', '#username');
+                        }
+                        if(!self.password()){
+                            Event.dispatch('element_invalid', '#password');
+                            validInformation = false;
+                        }else{
+                            Event.dispatch('element_valid', '#password');
+                        }
                     }
                 }
                 if(validInformation){
