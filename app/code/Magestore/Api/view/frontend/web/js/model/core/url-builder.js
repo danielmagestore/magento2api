@@ -30,19 +30,47 @@ define(
                 return baseUrl + completeUrl;
             },
             bindParams: function(url, params) {
+                var self = this;
                 params.method = this.method;
                 params.version = this.version;
 
                 var urlParts = url.split("/");
                 urlParts = urlParts.filter(Boolean);
 
+                var addedParams = [];
+                var urlParams = {};
                 $.each(urlParts, function(key, part) {
                     part = part.replace(':', '');
                     if (params[part] != undefined) {
                         urlParts[key] = params[part];
+                        addedParams.push(part);
                     }
                 });
-                return urlParts.join('/');
+                var completeUrl = urlParts.join('/');
+
+                $.each(params, function(key, value) {
+                    if ($.inArray(key, addedParams) < 0) {
+                        urlParams[key] = value;
+                    }
+                });
+
+                if(urlParams != {}){
+                    completeUrl = self.addParamsToUrl(completeUrl, urlParams);
+                }
+                return completeUrl;
+            },
+            addParamsToUrl: function(url, params){
+                $.each(params, function(key, value){
+                    if(key){
+                        if (url.indexOf("?") != -1) {
+                            url = url + '&'+key+'=' + value;
+                        }
+                        else {
+                            url = url + '?'+key+'=' + value;
+                        }
+                    }
+                });
+                return url;
             }
         };
     }

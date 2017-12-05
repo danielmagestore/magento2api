@@ -26,6 +26,7 @@ define(
             }),
             url: ApiDetail.url,
             responseText: ApiDetail.responseText,
+            trace: ApiDetail.trace,
             responseHeaders: ApiDetail.responseHeaders,
             initialize: function () {
                 var self = this;

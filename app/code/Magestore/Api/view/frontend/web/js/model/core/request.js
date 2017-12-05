@@ -5,10 +5,11 @@
 
 define(
     [
+        'ko',
         'jquery',
         'Magestore_Api/js/model/core/storage'
     ],
-    function ($, storage) {
+    function (ko, $, storage) {
         "use strict";
         var Request = {
             initialize: function () {
@@ -19,6 +20,11 @@ define(
                 var self = this;
                 if (!deferred) {
                     deferred = $.Deferred();
+                }
+                if($.isArray(requestHeaders)){
+                    requestHeaders = ko.utils.arrayFilter(requestHeaders, function (header) {
+                        return (header.key);
+                    });
                 }
                 switch (method) {
                     case 'post':

@@ -59,7 +59,7 @@ define(
                         });
                         data.push({label:'User', value:self.username()});
                         data.push({label:'Token', value:Api.accessToken()});
-                        data.push({label:'Token Type', value:tokenType});
+                        data.push({label:'Token Type', value:tokenType.text});
                     }else{
                         data.push({label:'User', value: __('Guest')});
                     }
@@ -97,7 +97,7 @@ define(
                     var url = "integration/"+self.accessType()+"/token";
                     var payload = {
                         username: self.username(),
-                        password: self.password(),
+                        password: self.password()
                     };
                     var apiRequest = Api.call(url, 'post', payload);
                     apiRequest.done(function(response){
@@ -129,20 +129,28 @@ define(
                     sessionData = JSON.parse(sessionData);
                     if(sessionData.base_url){
                         self.baseUrl(sessionData.base_url);
+                        Api.setBaseUrl(sessionData.base_url);
                     }
                     if(sessionData.custom_base_url){
                         self.customBaseUrl(sessionData.custom_base_url);
                     }
+                    if(sessionData.username){
+                        self.username(sessionData.username);
+                    }
+                    if(sessionData.access_type){
+                        self.accessType(sessionData.access_type);
+                    }
                     if(sessionData.access_token){
                         Api.accessToken(sessionData.access_token);
                     }
-                    console.log(sessionData);
                     self.isLoggedIn(true);
                 }else{
                     self.isLoggedIn(false);
-                    Api.accessToken('');
                     self.baseUrl(window.mapiDemoBaseUrl);
                     self.customBaseUrl('');
+                    self.accessType('');
+                    Api.accessToken('');
+                    Api.setBaseUrl('');
                 }
                 Api.crossDomain((self.isUseDemo())?false:true);
             },
@@ -154,6 +162,8 @@ define(
                 var sessionData = {
                     base_url: self.baseUrl(),
                     custom_base_url: self.customBaseUrl(),
+                    username: self.username(),
+                    access_type: self.accessType(),
                     access_token: Api.accessToken()
                 };
                 LocalStorage.save('session_data', JSON.stringify(sessionData));

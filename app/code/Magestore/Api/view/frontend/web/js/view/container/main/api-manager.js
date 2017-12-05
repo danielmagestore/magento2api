@@ -35,7 +35,9 @@ define(
                     if(self.urlParams().length > 0){
                         urlParamsJson = {};
                         ko.utils.arrayForEach(self.urlParams(), function(item) {
-                            urlParamsJson[item.key()] = item.value();
+                            if(typeof item.key() != 'undefined'){
+                                urlParamsJson[item.key()] = item.value();
+                            }
                         });
                     }
                     return urlParamsJson;
@@ -45,7 +47,9 @@ define(
                     if(self.payload().length > 0){
                         payloadJson = {};
                         ko.utils.arrayForEach(self.payload(), function(item) {
-                            payloadJson[item.key()] = item.value();
+                            if(typeof item.key() != 'undefined') {
+                                payloadJson[item.key()] = item.value();
+                            }
                         });
                     }
                     return payloadJson;
@@ -55,7 +59,9 @@ define(
                     if(self.requestHeaders().length > 0){
                         requestHeadersData = [];
                         ko.utils.arrayForEach(self.requestHeaders(), function(item) {
-                            requestHeadersData.push({key:item.key(), value:item.value()});
+                            if(typeof item.key() != 'undefined') {
+                                requestHeadersData.push({key: item.key(), value: item.value()});
+                            }
                         });
                     }
                     return requestHeadersData;

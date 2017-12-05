@@ -27,7 +27,19 @@
                 <input type="text"
                        id="base_url"
                        name="base_url"
-                       class="validate"
+                       class="validate tooltipped"
+                       data-position="right"
+                       data-delay="50"
+                       data-html="true"
+                       data-tooltip="
+                           <ul>
+                               <li class='left-align'>Note:</li>
+                               <li class='left-align'>Your server has to allow cross domain request(CORS)</li>
+                               <li class='left-align'>Example format:</li>
+                               <li class='left-align'>http://m2.magentovn.com/</li>
+                               <li class='left-align'>https://m2.magentovn.com/</li>
+                           </ul>
+                           "
                        data-bind="textInput:customBaseUrl"/>
                 <label for="base_url"
                        data-bind="i18n:'Your Site Url'"

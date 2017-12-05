@@ -21,6 +21,13 @@
             </div>
             <div class="collapsible-body"><pre data-bind="text:responseText"></pre></div>
         </li>
+        <li data-bind="visible:trace">
+            <div class="collapsible-header active">
+                <i class="material-icons">error_outline</i>
+                <span data-bind="i18n:'Trace'"></span>
+            </div>
+            <div class="collapsible-body"><pre data-bind="text:trace"></pre></div>
+        </li>
         <li>
             <div class="collapsible-header active">
                 <i class="material-icons">info</i>

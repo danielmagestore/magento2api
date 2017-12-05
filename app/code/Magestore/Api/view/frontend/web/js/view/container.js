@@ -86,6 +86,7 @@ define(
             afterRender: function () {
                 Event.dispatch(Main.EVENTS.HIDE_INDICATOR, '');
                 $('select').material_select();
+                $('.tooltipped').tooltip({delay: 50});
             }
         });
     }
