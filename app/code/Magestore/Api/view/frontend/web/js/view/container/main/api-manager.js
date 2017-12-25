@@ -11,9 +11,10 @@ define(
         'uiComponent',
         'mage/translate',
         'events',
-        'Magestore_Api/js/model/api'
+        'Magestore_Api/js/model/api',
+        'Magestore_Api/js/model/api/search-criteria-builder'
     ],
-    function ($, ko, Component, __, Event, Api) {
+    function ($, ko, Component, __, Event, Api, SearchCriteriaBuilder) {
         "use strict";
         return Component.extend({
             methods: Api.methods,
@@ -24,6 +25,12 @@ define(
             method: ko.observable(Api.DEFAULT.METHOD),
             contentType: ko.observable(Api.DEFAULT.CONTENT_TYPE),
             endpoint: ko.observable(''),
+            pageSize: SearchCriteriaBuilder.pageSize,
+            currentPage: SearchCriteriaBuilder.currentPage,
+            directions: SearchCriteriaBuilder.directions,
+            conditionTypes: SearchCriteriaBuilder.conditionTypes,
+            filterGroups: SearchCriteriaBuilder.filterGroups,
+            sortOrders: SearchCriteriaBuilder.sortOrders,
             defaults: {
                 template: 'Magestore_Api/container/main/api-manager'
             },
@@ -98,6 +105,9 @@ define(
                 });
                 $('.tooltipped').tooltip({delay: 50});
             },
+            renderSelectElement: function(){
+                $('select').material_select();
+            },
             addHeader: function(){
                 var self = this;
                 self.requestHeaders.push({key:ko.observable(),value:ko.observable()});
@@ -121,6 +131,39 @@ define(
             removePayload: function(payload){
                 var self = this;
                 self.payload.remove(payload);
+            },
+            addFilterGroup: function(){
+                var self = this;
+                self.filterGroups.push({filters:ko.observableArray(
+                    [{field:ko.observable(),value:ko.observable(),condition_type:ko.observable("eq")}]
+                )});
+            },
+            removeFilterGroup: function(filterGroup){
+                var self = this;
+                self.filterGroups.remove(filterGroup);
+            },
+            addFilter: function(filterGroup){
+                var self = this;
+                if(filterGroup && filterGroup.filters){
+                    filterGroup.filters.push({field:ko.observable(),value:ko.observable(),condition_type:ko.observable("eq")});
+                }
+            },
+            removeFilter: function(filterGroup, filter){
+                var self = this;
+                if(filterGroup && filter && filterGroup.filters){
+                    filterGroup.filters.remove(filter);
+                    if(filterGroup.filters().length == 0){
+                        self.filterGroups.remove(filterGroup);
+                    }
+                }
+            },
+            addSortOrder: function(){
+                var self = this;
+                self.sortOrders.push({field:ko.observable(),direction:ko.observable()});
+            },
+            removeSortOrder: function(sortOrder){
+                var self = this;
+                self.sortOrders.remove(sortOrder);
             }
         });
     }

@@ -10,10 +10,12 @@ define(
         'mage/translate',
         'request',
         'url-builder',
-        'Magestore_Api/js/model/api/detail'
+        'Magestore_Api/js/model/api/detail',
+        'Magestore_Api/js/model/api/search-criteria-builder'
     ],
-    function (ko, $, __, Request, UrlBuilder, ApiDetail) {
+    function (ko, $, __, Request, UrlBuilder, ApiDetail, SearchCriteriaBuilder) {
         "use strict";
+
         var Api = {
             DEFAULT: {
                 METHOD:'post',
@@ -54,6 +56,7 @@ define(
                     urlParams = (urlParams)?urlParams:{};
                     url = UrlBuilder.createUrl(url, urlParams);
                 }
+                url = SearchCriteriaBuilder.addToUrl(url);
                 requestHeaders = self.addAccessTokenToHeader(requestHeaders);
                 var apiRequest = Request.send(url, method, payload, deferred, contentType, requestHeaders, crossDomain);
                 apiRequest.done(function(response, textStatus, xhr){

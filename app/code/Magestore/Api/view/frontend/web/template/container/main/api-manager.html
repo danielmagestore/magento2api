@@ -105,6 +105,86 @@
             </ul>
         </li>
         <li class="collection-item">
+            <div class="row sub_header_wrapper">
+                <div class="sub_header left" data-bind="i18n:'Search Criteria Builder'"></div>
+                <i class="material-icons right" data-bind="click:addFilterGroup">add_box</i>
+            </div>
+            <ul class="collection api_criterial_general">
+                <li class="collection-item row">
+                    <div class="col s6 input-field">
+                        <input type="text" placeholder="Page Size" data-bind="textInput:pageSize, autoselect:true"/>
+                    </div>
+                    <div class="col s6 input-field">
+                        <input type="text" placeholder="Current Page" data-bind="textInput:currentPage, autoselect:true"/>
+                    </div>
+                </li>
+            </ul>
+            <ul class="collection api_sort_orders">
+                <li class="controls">
+                    <div class="controls_title left" data-bind="i18n:'Sort Orders'"></div>
+                    <i class="material-icons right" data-bind="click:addSortOrder">add_box</i>
+                </li>
+                <li class="collection-item row">
+                    <ul class="collection api_filters" data-bind="foreach: sortOrders">
+                        <li class="collection-item row">
+                            <div class="col s8 input-field">
+                                <input type="text" placeholder="Field" data-bind="textInput:field, autoselect:true"/>
+                            </div>
+                            <div class="col s3">
+                                <select name="direction_selector"
+                                        class="validate valid browser-default"
+                                        data-bind="
+                                    value: direction,
+                                    options: $parent.directions,
+                                    optionsText: function(item) {return item.text;},
+                                    optionsValue: function(item) {return item.value;},
+                                    afterRender: $parent.renderSelectElement
+                                    ">
+                                </select>
+                            </div>
+                            <div class="col s1 action-field">
+                                <i class="material-icons right" data-bind="click:$parent.removeSortOrder.bind($parent)">delete</i>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="collection api_filter_groups" data-bind="foreach: filterGroups">
+                <li class="controls">
+                    <div class="controls_title left" data-bind="i18n:'Filter Group'"></div>
+                    <i class="material-icons right" data-bind="click:$parent.addFilter">add_box</i>
+                    <i class="material-icons right" data-bind="click:$parent.removeFilterGroup.bind($parent)">delete</i>
+                </li>
+                <li class="collection-item row">
+                    <ul class="collection api_filters" data-bind="foreach: filters">
+                        <li class="collection-item row">
+                            <div class="col s3 input-field">
+                                <input type="text" placeholder="Field" data-bind="textInput:field, autoselect:true"/>
+                            </div>
+                            <div class="col s5 input-field">
+                                <input type="text" placeholder="Value" data-bind="textInput:value, autoselect:true"/>
+                            </div>
+                            <div class="col s3">
+                                <select name="condition_type_selector"
+                                        class="validate valid browser-default"
+                                        data-bind="
+                                    value: condition_type,
+                                    options: $parents[1].conditionTypes,
+                                    optionsText: function(item) {return item.text;},
+                                    optionsValue: function(item) {return item.value;},
+                                    afterRender: $parents[1].renderSelectElement
+                                    ">
+                                </select>
+                            </div>
+                            <div class="col s1 action-field">
+                                <i class="material-icons right" data-bind="click:$parents[1].removeFilter.bind($parents[1], $parent, $data)">delete</i>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li class="collection-item">
             <div class="row right-align">
                 <button class="btn waves-effect waves-light control-item" data-bind="click:send">
                     <span data-bind="i18n:'Send'"></span>

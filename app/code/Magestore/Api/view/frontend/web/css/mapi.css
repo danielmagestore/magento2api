@@ -53,10 +53,20 @@
 #api_manager .collection .collection-item .row{margin-bottom: 0px;}
 #api_manager .collection .collection-item .sub_header_wrapper .material-icons{padding-right: 5px;}
 #api_manager .collection .collection-item .row .control-item{margin: 0 0.75rem;}
-#api_manager .collection .collection-item .row .sub_header{padding-left: 10px;}
+#api_manager .collection .collection-item .row .sub_header{padding-left: 10px;    font-weight: 500;}
 #api_manager .collection .collection-item .collection .collection-item.row .input-field,
 #api_manager .collection .collection-item .collection .collection-item.row .input-field input{margin: 0px;}
 #api_manager .collection .collection-item .collection .collection-item.row .action-field{padding: 0px;}
+
+#api_manager .collection .collection-item .collection {overflow: visible;}
+#api_manager .collection .collection-item .collection .controls{height: 15px;}
+#api_manager .collection .collection-item .collection .controls .controls_title{
+    height: 24px;
+    line-height: 24px;
+    padding: 5px 5px 5px 15px;
+    color: #999;
+}
+#api_manager .collection .collection-item .collection .controls .material-icons{margin: 4px;}
 
 #api_detail .collapsible .collapsible-body{padding: 1rem 2rem;}
 #api_detail .collapsible .collapsible-body pre{margin: 0;}
