@@ -53,12 +53,12 @@ define(
 
                 if(filterGroups && (filterGroups.length > 0)){
                     $.each(filterGroups, function (groupIndex, filterGroup) {
-                        if(filterGroup && (filterGroup.filter().length > 0)){
-                            $.each(filterGroup.filter(), function (filterIndex, filter) {
-                                if(filter.field != ""){
-                                    querySearchStringArray.push('searchCriteria[filter_groups][' + groupIndex + '][filters][' + filterIndex + '][field]=' + filter.field);
-                                    querySearchStringArray.push('searchCriteria[filter_groups][' + groupIndex + '][filters][' + filterIndex + '][value]=' + filter.value);
-                                    querySearchStringArray.push('searchCriteria[filter_groups][' + groupIndex + '][filters][' + filterIndex + '][condition_type]=' + filter.condition);
+                        if(filterGroup && (filterGroup.filters().length > 0)){
+                            $.each(filterGroup.filters(), function (filterIndex, filter) {
+                                if(filter.field() != ""){
+                                    querySearchStringArray.push('searchCriteria[filter_groups][' + groupIndex + '][filters][' + filterIndex + '][field]=' + filter.field());
+                                    querySearchStringArray.push('searchCriteria[filter_groups][' + groupIndex + '][filters][' + filterIndex + '][value]=' + filter.value());
+                                    querySearchStringArray.push('searchCriteria[filter_groups][' + groupIndex + '][filters][' + filterIndex + '][condition_type]=' + filter.condition_type());
                                 }
                             });
                         }
@@ -67,9 +67,9 @@ define(
 
                 if(sortOrders && (sortOrders.length > 0)){
                     $.each(sortOrders, function (index, sortOrder) {
-                        if(sortOrder.field != ""){
-                            querySearchStringArray.push('searchCriteria[sortOrders][' + index + '][field]=' + sortOrder.field);
-                            querySearchStringArray.push('searchCriteria[sortOrders][' + index + '][direction]=' + sortOrder.direction);
+                        if(sortOrder.field() != ""){
+                            querySearchStringArray.push('searchCriteria[sortOrders][' + index + '][field]=' + sortOrder.field());
+                            querySearchStringArray.push('searchCriteria[sortOrders][' + index + '][direction]=' + sortOrder.direction());
                         }
                     });
                 }
